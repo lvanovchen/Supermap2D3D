@@ -1,12 +1,17 @@
 <template>
   <svg :class="svgClass" aria-hidden="true" v-on="$listeners">
-    <use :xlink:href="iconName"/>
+    <use :xlink:href="iconName" />
   </svg>
 </template>
 
 <script>
+/**
+ * SVG图标组件
+ * 使用svg-sprite-loader加载的图标
+ */
 export default {
   name: 'SvgIcon',
+
   props: {
     iconClass: {
       type: String,
@@ -17,19 +22,16 @@ export default {
       default: ''
     }
   },
+
   computed: {
-    iconName () {
-      return `#icon-${this.iconClass}`
+    iconName() {
+      return `#icon-${this.iconClass}`;
     },
-    svgClass () {
-      if (this.className) {
-        return 'svg-icon ' + this.className
-      } else {
-        return 'svg-icon'
-      }
+    svgClass() {
+      return this.className ? `svg-icon ${this.className}` : 'svg-icon';
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -39,6 +41,6 @@ export default {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
-  margin: 0 .1em;
+  margin: 0 0.1em;
 }
 </style>

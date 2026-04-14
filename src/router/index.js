@@ -1,62 +1,73 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
 Vue.use(Router);
+
 const router = new Router({
-  // mode:'history',
-  routes: [{
+  routes: [
+    {
       path: '/index',
       name: 'index',
       meta: {
         title: 'herox',
-        auth: false, //需要登录
+        auth: false,
         keepAlive: false
       },
-      component: resolve => require(['@/views/index.vue'], resolve)
+      component: () => import('@/views/index.vue')
     },
     {
       path: '/test',
       name: 'test',
       meta: {
         title: 'test',
-        auth: false, //需要登录
+        auth: false,
         keepAlive: false
       },
-      component: resolve => require(['@/views/Test.vue'], resolve)
+      component: () => import('@/views/Test.vue')
     },
     {
       path: '/supermap3d',
       name: 'supermap3d',
       meta: {
         title: '超图',
-        auth: false, //需要登录
+        auth: false,
         keepAlive: false
       },
-      component: resolve => require(['@/views/Supermap3D.vue'], resolve)
+      component: () => import('@/views/Supermap3D.vue')
     },
     {
       path: '/',
       name: 'supermap2d',
       meta: {
         title: '超图2d',
-        auth: false, //需要登录
+        auth: false,
         keepAlive: false
       },
-      component: resolve => require(['@/views/Supermap2D.vue'], resolve)
-    },
+      component: () => import('@/views/Supermap2D.vue')
+    }
   ]
 });
+
 /**
- * 路由前置检查
+ * 路由前置守卫
  */
 router.beforeEach((to, from, next) => {
-  // 合法性校验
+  // 设置页面标题
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
+
+  // 权限校验
   if (to.meta.auth) {
-    console.log('into auth');
+    // TODO: 实现登录验证逻辑
+    next();
+  } else {
     next();
   }
-  next();
 });
+
 router.afterEach(() => {
-  // 在即将进入新的页面组件前操作
+  // 页面切换后的操作
 });
+
 export default router;

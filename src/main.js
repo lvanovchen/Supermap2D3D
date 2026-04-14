@@ -1,16 +1,15 @@
 import Vue from 'vue';
 import App from './App.vue';
-import store from './store/index';
-import router from './router/index';
-import Vuex from 'vuex';
-import axios from './http/index';
+import store from './store';
+import router from './router';
+import axios from './http';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import './icons/index';
+import './icons';
 
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
-Vue.use(Vuex);
+
 Vue.use(ElementUI);
 
 new Vue({

@@ -1,53 +1,69 @@
 /**
- * 提示与加载工具类
+ * 工具类
  */
-import axios from '../../http'
-import OSS from 'ali-oss'
-import qs from 'qs'
-import nanoid from 'nanoid'
-export default class utils {
-    constructor() {
+export default class Utils {
+    /**
+     * 验证手机号
+     * @param {string} str - 手机号
+     * @returns {boolean} 是否有效
+     */
+    static isPhoneAvailable(str) {
+        const phoneRegex = /^1[3-9]\d{9}$/;
+        return phoneRegex.test(String(str));
     }
-    // 验证手机号
-    static isPoneAvailable(str) {
-        var myreg=/^[1][3,4,5,6,7,8][0-9]{9}$/;
-        if (!myreg.test(str)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    //检查是什么浏览器
+
+    /**
+     * 获取浏览器类型
+     * @returns {string} 浏览器名称
+     */
     static getExplorer() {
-        localStorage.setItem('ie9','true')
-        var explorer = window.navigator.userAgent ;
-        if (explorer.indexOf("MSIE 9.0") >= 0) {//ie 
-            return "ie9";
-        }else if (explorer.indexOf("Firefox") >= 0) {//firefox
-            return "Firefox"; 
-        }else if(explorer.indexOf("Chrome") >= 0){//Chrome
+        const explorer = window.navigator.userAgent;
+
+        if (explorer.indexOf("MSIE") >= 0 || explorer.indexOf("Trident") >= 0) {
+            return "IE";
+        }
+        if (explorer.indexOf("Firefox") >= 0) {
+            return "Firefox";
+        }
+        if (explorer.indexOf("Chrome") >= 0) {
             return "Chrome";
-        }else if(explorer.indexOf("Opera") >= 0){//Opera
+        }
+        if (explorer.indexOf("Opera") >= 0) {
             return "Opera";
-        }else if(explorer.indexOf("Safari") >= 0){//Safari
+        }
+        if (explorer.indexOf("Safari") >= 0) {
             return "Safari";
         }
+        return "Unknown";
     }
-    // 删除数组中指定元素
-    static removeArrVal(arr,val){
-        for(var i=0; i<arr.length; i++) {
-            if(arr[i] == val) {
-                arr.splice(i, 1);
-                break;
-            }
+
+    /**
+     * 删除数组中指定元素（修改原数组）
+     * @param {Array} arr - 目标数组
+     * @param {*} val - 要删除的值
+     */
+    static removeArrVal(arr, val) {
+        const index = arr.indexOf(val);
+        if (index > -1) {
+            arr.splice(index, 1);
         }
     }
-    // 判断字符是否为空的方法
-    static isEmpty(obj){
-        if(typeof obj == "undefined" || obj == null || obj == ""){
-            return false;
-        }else{
-            return true;
-        }
+
+    /**
+     * 判断值是否为空
+     * @param {*} obj - 要检查的值
+     * @returns {boolean} 是否为空
+     */
+    static isEmpty(obj) {
+        return obj === undefined || obj === null || obj === '';
+    }
+
+    /**
+     * 判断值是否非空
+     * @param {*} obj - 要检查的值
+     * @returns {boolean} 是否非空
+     */
+    static isNotEmpty(obj) {
+        return !Utils.isEmpty(obj);
     }
 }

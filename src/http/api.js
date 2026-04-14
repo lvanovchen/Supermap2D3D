@@ -1,19 +1,22 @@
-// 存放各种api集合  发挥脑洞 自己操作
+// API请求封装
 import axios from './index';
 
 /**
- * get方法，对应get请求
- * @param {String} url [请求的url地址]
- * @param {Object} params [请求时携带的参数]
+ * GET请求
+ * @param {string} url - 请求地址
+ * @param {Object} params - 请求参数
+ * @returns {Promise} 请求结果
  */
 export function get(url, params) {
-    return new Promise((resolve, reject) => {
-        axios.get(url, {
-            params: params
-        }).then(res => {
-            resolve(res);
-        }).catch(err => {
-            reject(err);
-        });
-    });
+    return axios.get(url, { params });
+}
+
+/**
+ * POST请求
+ * @param {string} url - 请求地址
+ * @param {Object} data - 请求数据
+ * @returns {Promise} 请求结果
+ */
+export function post(url, data) {
+    return axios.post(url, data);
 }
