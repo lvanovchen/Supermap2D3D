@@ -25,25 +25,20 @@ module.exports = {
   runtimeCompiler: true,
 
   // webpack配置
-  configureWebpack: (config) => {
-    if (process.env.NODE_ENV === 'production') {
-      config.mode = 'production';
-    } else {
-      config.mode = 'development';
-    }
-
+  configureWebpack: {
     // 路径别名
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': resolve('src'),
-      '@c': resolve('src/components'),
-      'excel': resolve('src/excel')
-    };
+    resolve: {
+      alias: {
+        '@': resolve('src'),
+        '@c': resolve('src/components'),
+        'excel': resolve('src/excel')
+      }
+    }
   },
 
   // CSS配置
   css: {
-    // 是否使用css分离插件 ExtractTextPlugin
+    // 是否使用css分离插件
     extract: process.env.NODE_ENV === 'production',
     sourceMap: false
   },
@@ -53,7 +48,7 @@ module.exports = {
     open: true,
     port: 8080,
     https: false,
-    hotOnly: false
+    hot: true
   },
 
   // chainWebpack配置
@@ -73,5 +68,17 @@ module.exports = {
     // 排除SVG目录的图片处理
     const imagesRule = config.module.rule('images');
     imagesRule.exclude.add(resolve('src/icons/svg'));
+
+    // 设置 sass-loader 选项 (dart-sass)
+    config.module
+      .rule('scss')
+      .use('sass-loader')
+      .tap(options => ({
+        ...options,
+        implementation: require('sass'),
+        sassOptions: {
+          fiber: false
+        }
+      }));
   }
 };

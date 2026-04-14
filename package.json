@@ -11,38 +11,39 @@
     "analyze": "vue-cli-service build --mode analyze"
   },
   "dependencies": {
-    "@supermap/iclient-classic": "^9.1.2",
-    "@supermap/iclient-leaflet": "^10.0.1",
-    "@supermap/vue-iclient-mapboxgl": "^10.0.1",
-    "axios": "^0.18.0",
-    "element-ui": "^2.13.0",
-    "file-saver": "^2.0.2",
-    "html2canvas": "^1.0.0-rc.3",
-    "js-cookie": "^2.2.0",
-    "less": "^3.8.1",
-    "less-loader": "^4.1.0",
-    "nprogress": "0.2.0",
+    "@supermap/iclient-classic": "^11.1.1",
+    "@supermap/iclient-leaflet": "^11.1.1",
+    "@supermap/vue-iclient-mapboxgl": "^11.1.1",
+    "axios": "^1.6.8",
+    "element-ui": "^2.15.14",
+    "file-saver": "^2.0.5",
+    "html2canvas": "^1.4.1",
+    "js-cookie": "^3.0.5",
+    "less": "^4.2.0",
+    "less-loader": "^11.1.4",
+    "nprogress": "^0.2.0",
     "script-loader": "^0.7.2",
     "scrollbox": "^4.0.0",
-    "taffy": "^2.6.2",
-    "video.js": "^7.6.0",
-    "vue": "^2.6.0",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
-    "xlsx": "^0.15.6"
+    "video.js": "^7.21.7",
+    "vue": "^2.7.16",
+    "vue-router": "^3.6.5",
+    "vuex": "^3.6.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.4",
-    "@vue/cli-plugin-eslint": "^3.0.4",
-    "@vue/cli-service": "^3.0.4",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.13.1",
-    "sass-loader": "^8.0.2",
-    "svg-sprite-loader": "^4.1.6",
-    "vue-template-compiler": "^2.6.0",
-    "webpack-bundle-analyzer": "^2.13.1"
+    "@babel/core": "^7.24.0",
+    "@babel/eslint-parser": "^7.23.10",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.22.0",
+    "sass": "^1.72.0",
+    "sass-loader": "^14.1.1",
+    "svg-sprite-loader": "^6.0.11",
+    "vue-template-compiler": "^2.7.16",
+    "webpack": "^5.90.0",
+    "webpack-bundle-analyzer": "^4.10.1"
   },
   "eslintConfig": {
     "root": true,
@@ -61,9 +62,10 @@
       "no-unused-vars": "warn"
     },
     "parserOptions": {
-      "parser": "babel-eslint",
-      "ecmaVersion": 2018,
-      "sourceType": "module"
+      "parser": "@babel/eslint-parser",
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "requireConfigFile": false
     }
   },
   "postcss": {
@@ -74,10 +76,15 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not dead",
+    "not ie <= 11"
   ],
   "engines": {
-    "node": ">=10.0.0",
+    "node": ">=14.0.0",
     "npm": ">=6.0.0"
+  },
+  "overrides": {
+    "axios": "^1.6.8",
+    "xlsx": "^0.18.5"
   }
 }
